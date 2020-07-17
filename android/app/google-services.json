@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "786694800560",
+    "firebase_url": "https://store-app-e9d85.firebaseio.com",
+    "project_id": "store-app-e9d85",
+    "storage_bucket": "store-app-e9d85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786694800560:android:bc041d111041848860a775",
+        "android_client_info": {
+          "package_name": "br.com.rodrigues.store_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786694800560-1bljfps6h5f1c6761q097kr011tk732c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqgyafihcN3xNnd_XkKV366BGzfCpU_j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786694800560-1bljfps6h5f1c6761q097kr011tk732c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
