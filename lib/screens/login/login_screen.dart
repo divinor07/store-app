@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/helpers/validators.dart';
 
 class LoginScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,52 +17,61 @@ class LoginScreen extends StatelessWidget {
       body: Center(
         child: Card(
           margin: const EdgeInsets.symmetric(horizontal: 16),
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            shrinkWrap: true,
-            children: <Widget>[
-              TextFormField(
-                decoration: const InputDecoration(hintText: 'E-mail'),
-                keyboardType: TextInputType.emailAddress,
-                autocorrect: false,
-                validator: (email) {
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(hintText: 'Senha'),
-                autocorrect: false,
-                obscureText: true,
-                validator: (pass) {
-                  if (pass.isEmpty || pass.length < 6) return 'Senha Inválida!';
-                  return null;
-                },
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: FlatButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.zero,
-                  child: const Text('Esqueci minha senha'),
+          child: Form(
+            key: formKey,
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              shrinkWrap: true,
+              children: <Widget>[
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(hintText: 'E-mail'),
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                  validator: (email) {
+                    if (!emailValid(email)) return 'E-mail inválido!';
+                    return null;
+                  },
                 ),
-              ),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 44,
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  child: const Text(
-                    'Entrar',
-                    style: TextStyle(
-                      fontSize: 18,
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: passController,
+                  decoration: const InputDecoration(hintText: 'Senha'),
+                  autocorrect: false,
+                  obscureText: true,
+                  validator: (pass) {
+                    if (pass.isEmpty || pass.length < 6)
+                      return 'Senha Inválida!';
+                    return null;
+                  },
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: FlatButton(
+                    onPressed: () {},
+                    padding: EdgeInsets.zero,
+                    child: const Text('Esqueci minha senha'),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: 44,
+                  child: RaisedButton(
+                    onPressed: () {
+                      if (formKey.currentState.validate()) {}
+                    },
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
