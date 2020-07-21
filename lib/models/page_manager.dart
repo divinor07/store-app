@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class PageManager {
-  PageController _pageController;
+  final PageController _pageController;
 
   PageManager(this._pageController);
 
