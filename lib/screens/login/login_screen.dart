@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/helpers/validators.dart';
+import 'package:store_app/models/user.dart';
+import 'package:store_app/models/user_manager.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -58,7 +61,14 @@ class LoginScreen extends StatelessWidget {
                   height: 44,
                   child: RaisedButton(
                     onPressed: () {
-                      if (formKey.currentState.validate()) {}
+                      if (formKey.currentState.validate()) {
+                        context.read<UserManager>().signIn(
+                              User(
+                                email: emailController.text,
+                                password: passController.text,
+                              ),
+                            );
+                      }
                     },
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
