@@ -21,7 +21,9 @@ class UserManager extends ChangeNotifier {
 
     try {
       final AuthResult result = await auth.signInWithEmailAndPassword(
-          email: user.email, password: user.password);
+        email: user.email,
+        password: user.password,
+      );
 
       this.user = result.user;
 
@@ -29,6 +31,25 @@ class UserManager extends ChangeNotifier {
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
     }
+    loading = false;
+  }
+
+  Future<void> signUp({User user, Function onFail, Function onSuccess}) async {
+    loading = true;
+
+    try {
+      final AuthResult result = await auth.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+
+      this.user = result.user;
+
+      onSuccess();
+    } on PlatformException catch (e) {
+      onFail(getErrorString(e.code));
+    }
+
     loading = false;
   }
 

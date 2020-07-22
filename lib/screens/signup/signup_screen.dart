@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/helpers/validators.dart';
 import 'package:store_app/models/user.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/models/user_manager.dart';
 
 class SignupScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -102,7 +104,25 @@ class SignupScreen extends StatelessWidget {
                               backgroundColor: Colors.red,
                             ),
                           );
-                        } else {}
+
+                          return;
+                        } else {
+                          context.read<UserManager>().signUp(
+                                user: user,
+                                onSuccess: () {
+                                  debugPrint('Sucesso!');
+                                  // TODO: POP
+                                },
+                                onFail: (e) {
+                                  scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      content: Text('Falha ao cadastrar: $e'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                },
+                              );
+                        }
                       }
                     },
                     child: const Text(
