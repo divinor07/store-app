@@ -5,7 +5,9 @@ import 'package:store_app/helpers/firebase_errors.dart';
 import 'package:store_app/models/user.dart';
 
 class UserManager extends ChangeNotifier {
-  UserManager(_loadCurrentUser());
+  UserManager() {
+    _loadCurrentUser();
+  }
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
