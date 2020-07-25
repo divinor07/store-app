@@ -11,16 +11,59 @@ class ProductsScreen extends StatelessWidget {
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
-        title: const Text('Produtos'),
+        title: Consumer<ProductManager>(
+          builder: (_, productManager, __) {
+            if (productManager.search.isEmpty) {
+              return const Text('Produtos');
+            } else {
+              return LayoutBuilder(
+                builder: (_, constraints) {
+                  return GestureDetector(
+                    onTap: () async {
+                      final search = await showDialog<String>(
+                        context: context,
+                        builder: (_) => SearchDialog(productManager.search),
+                      );
+                      if (search != null) {
+                        productManager.search = search;
+                      }
+                    },
+                    child: Container(
+                      width: constraints.biggest.width,
+                      child: Text(
+                        productManager.search,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () async {
-              final search = await showDialog<String>(
-                  context: context, builder: (_) => SearchDialog());
-              if (search != null) {
-                context.read<ProductManager>().search = search;
+          Consumer<ProductManager>(
+            builder: (_, productManager, __) {
+              if (productManager.search.isEmpty) {
+                return IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    final search = await showDialog<String>(
+                        context: context,
+                        builder: (_) => SearchDialog(productManager.search));
+                    if (search != null) {
+                      context.read<ProductManager>().search = search;
+                    }
+                  },
+                );
+              } else {
+                return IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () async {
+                    context.read<ProductManager>().search = '';
+                  },
+                );
               }
             },
           )
