@@ -1,12 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:store_app/models/item_size.dart';
 
-class Product {
+class Product extends ChangeNotifier {
   String id;
   String name;
   String description;
   List<String> images;
   List<ItemSize> sizes;
+
+  ItemSize _selectedSize;
+  ItemSize get selectedSize => _selectedSize;
+  set selectedSize(ItemSize value) {
+    _selectedSize = value;
+    notifyListeners();
+  }
 
   Product.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
