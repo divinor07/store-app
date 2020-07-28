@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/product.dart';
+import 'package:store_app/models/user_manager.dart';
 import 'package:store_app/screens/product/components/size_widget.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class ProductScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
                     product.name,
@@ -66,8 +67,8 @@ class ProductScreen extends StatelessWidget {
                       color: primaryColor,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 8),
                     child: Text(
                       'Descrição',
                       style: TextStyle(
@@ -82,8 +83,8 @@ class ProductScreen extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 8),
                     child: Text(
                       'Tamanhos',
                       style: TextStyle(
@@ -98,7 +99,37 @@ class ProductScreen extends StatelessWidget {
                     children: product.sizes.map((s) {
                       return SizeWidget(size: s);
                     }).toList(),
-                  )
+                  ),
+                  const SizedBox(height: 20),
+                  if (product.hasStock)
+                    Consumer2<UserManager, Product>(
+                      builder: (_, userManager, product, __) {
+                        return SizedBox(
+                          height: 44,
+                          child: RaisedButton(
+                            onPressed: product.selectedSize != null
+                                ? () {
+                                    if (userManager.isLoggedIn) {
+                                      // TODO: ADICIONAR AO CARRINHO
+                                    } else {
+                                      Navigator.of(context).pushNamed('/login');
+                                    }
+                                  }
+                                : null,
+                            color: primaryColor,
+                            textColor: Colors.white,
+                            child: Text(
+                              userManager.isLoggedIn
+                                  ? 'Adicionar ao Carrinho'
+                                  : 'Entre para Comprar',
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    )
                 ],
               ),
             )

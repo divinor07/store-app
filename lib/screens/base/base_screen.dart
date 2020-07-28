@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/common/custom_drawer/custom_drawer.dart';
 import 'package:store_app/models/page_manager.dart';
-import 'package:store_app/screens/login/login_screen.dart';
 import 'package:store_app/screens/products/products_screen.dart';
 
 class BaseScreen extends StatelessWidget {

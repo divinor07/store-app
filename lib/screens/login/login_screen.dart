@@ -61,8 +61,9 @@ class LoginScreen extends StatelessWidget {
                         autocorrect: false,
                         obscureText: true,
                         validator: (pass) {
-                          if (pass.isEmpty || pass.length < 6)
+                          if (pass.isEmpty || pass.length < 6) {
                             return 'Senha Inválida!';
+                          }
                           return null;
                         },
                       ),
