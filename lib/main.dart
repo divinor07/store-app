@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/cart_manager.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/product_manager.dart';
 import 'package:store_app/models/user_manager.dart';
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductManager(),
           lazy: false,
         ),
+        Provider(
+          create: (_) => CartManager(),
+          lazy: false,
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
