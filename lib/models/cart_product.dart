@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:store_app/models/item_size.dart';
 import 'package:store_app/models/product.dart';
 
@@ -16,10 +16,10 @@ class CartProduct extends ChangeNotifier {
     quantity = document.data['quantity'] as int;
     size = document.data['size'] as String;
 
-    firestore
-        .document('products/$productId')
-        .get()
-        .then((doc) => product = Product.fromDocument(doc));
+    firestore.document('products/$productId').get().then((doc) {
+      product = Product.fromDocument(doc);
+      notifyListeners();
+    });
   }
 
   final Firestore firestore = Firestore.instance;
