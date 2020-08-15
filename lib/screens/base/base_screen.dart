@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/common/custom_drawer/custom_drawer.dart';
 import 'package:store_app/models/page_manager.dart';
 import 'package:store_app/models/user_manager.dart';
+import 'package:store_app/screens/admin_users/admin_users_screen.dart';
 import 'package:store_app/screens/home/home_screen.dart';
 import 'package:store_app/screens/products/products_screen.dart';
 
@@ -34,13 +35,7 @@ class BaseScreen extends StatelessWidget {
                 ),
               ),
               if (userManager.adminEnabled) ...[
-                Scaffold(
-                  drawer: CustomDrawer(),
-                  appBar: AppBar(
-                    title: const Text('Usuários'),
-                    centerTitle: true,
-                  ),
-                ),
+                AdminUsersScreen(),
                 Scaffold(
                   drawer: CustomDrawer(),
                   appBar: AppBar(
