@@ -8,6 +8,7 @@ import 'package:store_app/models/product_manager.dart';
 import 'package:store_app/models/user_manager.dart';
 import 'package:store_app/screens/base/base_screen.dart';
 import 'package:store_app/screens/cart/cart_screen.dart';
+import 'package:store_app/screens/edit_product/edit_product_screen.dart';
 import 'package:store_app/screens/login/login_screen.dart';
 import 'package:store_app/screens/product/product_screen.dart';
 import 'package:store_app/screens/signup/signup_screen.dart';
@@ -59,17 +60,30 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/login':
-              return MaterialPageRoute(builder: (_) => LoginScreen());
+              return MaterialPageRoute(
+                builder: (_) => LoginScreen(),
+              );
             case '/signup':
-              return MaterialPageRoute(builder: (_) => SignupScreen());
+              return MaterialPageRoute(
+                builder: (_) => SignupScreen(),
+              );
             case '/product':
               return MaterialPageRoute(
-                  builder: (_) => ProductScreen(settings.arguments as Product));
+                builder: (_) => ProductScreen(settings.arguments as Product),
+              );
             case '/cart':
-              return MaterialPageRoute(builder: (_) => CartScreen());
+              return MaterialPageRoute(
+                builder: (_) => CartScreen(),
+              );
+            case '/edit_product':
+              return MaterialPageRoute(
+                builder: (_) => EditProductScreen(),
+              );
             case '/base':
             default:
-              return MaterialPageRoute(builder: (_) => BaseScreen());
+              return MaterialPageRoute(
+                builder: (_) => BaseScreen(),
+              );
           }
         },
       ),
