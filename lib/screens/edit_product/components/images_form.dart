@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/screens/edit_product/components/image_source_sheet.dart';
@@ -47,8 +48,17 @@ class ImagesForm extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                     iconSize: 50,
                     onPressed: () {
-                      showModalBottomSheet(
-                          context: context, builder: (_) => ImageSourceSheet());
+                      if (Platform.isAndroid) {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (_) => ImageSourceSheet(),
+                        );
+                      } else {
+                        showCupertinoModalPopup(
+                          context: context,
+                          builder: (_) => ImageSourceSheet(),
+                        );
+                      }
                     },
                   ),
                 ),
