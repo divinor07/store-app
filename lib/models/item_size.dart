@@ -3,6 +3,8 @@ class ItemSize {
   num price;
   int stock;
 
+  ItemSize();
+
   ItemSize.fromMap(Map<String, dynamic> map) {
     name = map['name'] as String;
     price = map['price'] as num;
