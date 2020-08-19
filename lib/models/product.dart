@@ -3,6 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:store_app/models/item_size.dart';
 
 class Product extends ChangeNotifier {
+  Product({this.id, this.name, this.description, this.images, this.sizes}) {
+    images = images ?? [];
+    sizes = sizes ?? [];
+  }
+
   String id;
   String name;
   String description;
@@ -24,6 +29,16 @@ class Product extends ChangeNotifier {
     sizes = (document.data['sizes'] as List<dynamic> ?? [])
         .map((s) => ItemSize.fromMap(s as Map<String, dynamic>))
         .toList();
+  }
+
+  Product clone() {
+    return Product(
+      id: id,
+      name: name,
+      description: description,
+      images: List.from(images),
+      sizes: sizes.map((size) => size.clone()).toList(),
+    );
   }
 
   int get totalStock {

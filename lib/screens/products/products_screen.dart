@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/common/custom_drawer/custom_drawer.dart';
 import 'package:store_app/models/product_manager.dart';
+import 'package:store_app/models/user_manager.dart';
 import 'package:store_app/screens/products/components/product_list_tile.dart';
 import 'package:store_app/screens/products/components/search_dialog.dart';
 
@@ -21,20 +22,18 @@ class ProductsScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () async {
                       final search = await showDialog<String>(
-                        context: context,
-                        builder: (_) => SearchDialog(productManager.search),
-                      );
+                          context: context,
+                          builder: (_) => SearchDialog(productManager.search));
                       if (search != null) {
                         productManager.search = search;
                       }
                     },
                     child: Container(
-                      width: constraints.biggest.width,
-                      child: Text(
-                        productManager.search,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                        width: constraints.biggest.width,
+                        child: Text(
+                          productManager.search,
+                          textAlign: TextAlign.center,
+                        )),
                   );
                 },
               );
@@ -53,7 +52,7 @@ class ProductsScreen extends StatelessWidget {
                         context: context,
                         builder: (_) => SearchDialog(productManager.search));
                     if (search != null) {
-                      context.read<ProductManager>().search = search;
+                      productManager.search = search;
                     }
                   },
                 );
@@ -61,9 +60,25 @@ class ProductsScreen extends StatelessWidget {
                 return IconButton(
                   icon: Icon(Icons.close),
                   onPressed: () async {
-                    context.read<ProductManager>().search = '';
+                    productManager.search = '';
                   },
                 );
+              }
+            },
+          ),
+          Consumer<UserManager>(
+            builder: (_, userManager, __) {
+              if (userManager.adminEnabled) {
+                return IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      '/edit_product',
+                    );
+                  },
+                );
+              } else {
+                return Container();
               }
             },
           )
@@ -73,12 +88,11 @@ class ProductsScreen extends StatelessWidget {
         builder: (_, productManager, __) {
           final filteredProducts = productManager.filteredProducts;
           return ListView.builder(
-            padding: const EdgeInsets.all(4),
-            itemCount: filteredProducts.length,
-            itemBuilder: (_, index) {
-              return ProductListTile(filteredProducts[index]);
-            },
-          );
+              padding: const EdgeInsets.all(4),
+              itemCount: filteredProducts.length,
+              itemBuilder: (_, index) {
+                return ProductListTile(filteredProducts[index]);
+              });
         },
       ),
       floatingActionButton: FloatingActionButton(
