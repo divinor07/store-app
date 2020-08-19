@@ -41,7 +41,7 @@ class PriceCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
+                const Text(
                   'Total',
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
