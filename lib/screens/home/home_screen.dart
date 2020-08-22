@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/common/custom_drawer/custom_drawer.dart';
 import 'package:store_app/models/home_manager.dart';
+import 'package:store_app/models/user_manager.dart';
+import 'package:store_app/screens/home/components/add_section_widget.dart';
 import 'package:store_app/screens/home/components/section_list.dart';
 import 'package:store_app/screens/home/components/section_staggered.dart';
 
@@ -63,8 +65,9 @@ class HomeScreen extends StatelessWidget {
                             onPressed: homeManager.enterEditing,
                           );
                         }
-                      } else
+                      } else {
                         return Container();
+                      }
                     },
                   ),
                 ],
@@ -82,6 +85,10 @@ class HomeScreen extends StatelessWidget {
                         return Container();
                     }
                   }).toList();
+
+                  if (homeManager.editing) {
+                    children.add(AddSectionWidget(homeManager));
+                  }
 
                   return SliverList(
                     delegate: SliverChildListDelegate(children),

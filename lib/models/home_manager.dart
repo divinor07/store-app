@@ -7,7 +7,7 @@ class HomeManager extends ChangeNotifier {
     _loadSections();
   }
 
-  List<Section> _sections = [];
+  final List<Section> _sections = [];
 
   List<Section> _editingSections = [];
 
@@ -25,11 +25,17 @@ class HomeManager extends ChangeNotifier {
     });
   }
 
+  void addSection(Section section) {
+    _editingSections.add(section);
+    notifyListeners();
+  }
+
   List<Section> get sections {
-    if (editing)
+    if (editing) {
       return _editingSections;
-    else
+    } else {
       return _sections;
+    }
   }
 
   void enterEditing() {

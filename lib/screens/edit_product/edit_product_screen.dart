@@ -69,8 +69,8 @@ class EditProductScreen extends StatelessWidget {
                         color: primaryColor,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 16),
                       child: Text(
                         'Descrição',
                         style: TextStyle(
