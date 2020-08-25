@@ -7,7 +7,12 @@ import 'package:store_app/screens/admin_users/admin_users_screen.dart';
 import 'package:store_app/screens/home/home_screen.dart';
 import 'package:store_app/screens/products/products_screen.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreen extends StatefulWidget {
+  @override
+  _BaseScreenState createState() => _BaseScreenState();
+}
+
+class _BaseScreenState extends State<BaseScreen> {
   final PageController pageController = PageController();
 
   @override
@@ -25,13 +30,13 @@ class BaseScreen extends StatelessWidget {
               Scaffold(
                 drawer: CustomDrawer(),
                 appBar: AppBar(
-                  title: const Text('Home 3'),
+                  title: const Text('Home3'),
                 ),
               ),
               Scaffold(
                 drawer: CustomDrawer(),
                 appBar: AppBar(
-                  title: const Text('Home 4'),
+                  title: const Text('Home4'),
                 ),
               ),
               if (userManager.adminEnabled) ...[
@@ -40,7 +45,6 @@ class BaseScreen extends StatelessWidget {
                   drawer: CustomDrawer(),
                   appBar: AppBar(
                     title: const Text('Pedidos'),
-                    centerTitle: true,
                   ),
                 ),
               ]
