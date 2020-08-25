@@ -4,6 +4,7 @@ import 'package:store_app/models/cart_product.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/user.dart';
 import 'package:store_app/models/user_manager.dart';
+import 'package:store_app/services/cepaberto_service.dart';
 
 class CartManager extends ChangeNotifier {
   List<CartProduct> items = [];
@@ -36,7 +37,6 @@ class CartManager extends ChangeNotifier {
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
       cartProduct.addListener(_onItemUpdated);
-
       items.add(cartProduct);
       user.cartReference
           .add(cartProduct.toCartItemMap())
@@ -69,6 +69,7 @@ class CartManager extends ChangeNotifier {
 
       _updateCartProduct(cartProduct);
     }
+
     notifyListeners();
   }
 
@@ -85,5 +86,19 @@ class CartManager extends ChangeNotifier {
       if (!cartProduct.hasStock) return false;
     }
     return true;
+  }
+
+  // ADDRESS
+
+  Future<void> getAddress(String cep) async {
+    final cepAbertoService = CepAbertoService();
+
+    try {
+      final address = await cepAbertoService.getAddressFromCep(cep);
+
+      print(address);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

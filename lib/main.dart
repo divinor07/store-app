@@ -14,14 +14,9 @@ import 'package:store_app/screens/login/login_screen.dart';
 import 'package:store_app/screens/product/product_screen.dart';
 import 'package:store_app/screens/select_product/select_product_screen.dart';
 import 'package:store_app/screens/signup/signup_screen.dart';
-import 'package:store_app/services/cepaberto_service.dart';
 
 void main() {
   runApp(MyApp());
-
-  CepAbertoService()
-      .getAddressFromCep('13.087-000')
-      .then((address) => print(address));
 }
 
 class MyApp extends StatelessWidget {
