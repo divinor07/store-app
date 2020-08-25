@@ -19,7 +19,9 @@ import 'package:store_app/services/cepaberto_service.dart';
 void main() {
   runApp(MyApp());
 
-  CepAbertoService().getAddressFromCep('64.748-000');
+  CepAbertoService()
+      .getAddressFromCep('13.087-000')
+      .then((address) => print(address));
 }
 
 class MyApp extends StatelessWidget {
