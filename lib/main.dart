@@ -6,6 +6,7 @@ import 'package:store_app/models/home_manager.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/product_manager.dart';
 import 'package:store_app/models/user_manager.dart';
+import 'package:store_app/screens/address/address_screen.dart';
 import 'package:store_app/screens/base/base_screen.dart';
 import 'package:store_app/screens/cart/cart_screen.dart';
 import 'package:store_app/screens/edit_product/edit_product_screen.dart';
@@ -75,6 +76,10 @@ class MyApp extends StatelessWidget {
             case '/cart':
               return MaterialPageRoute(
                 builder: (_) => CartScreen(),
+              );
+            case '/address':
+              return MaterialPageRoute(
+                builder: (_) => AddressScreen(),
               );
             case '/edit_product':
               return MaterialPageRoute(
