@@ -138,7 +138,7 @@ class SignupScreen extends StatelessWidget {
                                   }
                                 },
                           child: userManager.loading
-                              ? CircularProgressIndicator(
+                              ? const CircularProgressIndicator(
                                   valueColor:
                                       AlwaysStoppedAnimation(Colors.white),
                                 )

@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   if (homeManager.loading) {
                     return SliverToBoxAdapter(
                       child: LinearProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                        valueColor: const AlwaysStoppedAnimation(Colors.white),
                         backgroundColor: Colors.transparent,
                       ),
                     );

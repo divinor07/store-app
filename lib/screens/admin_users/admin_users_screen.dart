@@ -27,13 +27,13 @@ class AdminUsersScreen extends StatelessWidget {
                 ),
                 subtitle: Text(
                   adminUsersManager.users[index].email,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
               );
             },
-            highlightTextStyle: TextStyle(
+            highlightTextStyle: const TextStyle(
               color: Colors.white,
               fontSize: 20,
             ),

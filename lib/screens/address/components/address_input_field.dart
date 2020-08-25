@@ -17,7 +17,7 @@ class AddressInputField extends StatelessWidget {
     String emptyValidator(String text) =>
         text.isEmpty ? 'Campo obrigatório' : null;
 
-    if (address.zipCode != null && cartManager.deliveryPrice == null)
+    if (address.zipCode != null && cartManager.deliveryPrice == null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -155,14 +155,15 @@ class AddressInputField extends StatelessWidget {
           ),
         ],
       );
-    else if (address.zipCode != null)
+    } else if (address.zipCode != null) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child:
             Text('${address.street}, ${address.number}\n${address.district}\n'
                 '${address.city} - ${address.state}'),
       );
-    else
+    } else {
       return Container();
+    }
   }
 }

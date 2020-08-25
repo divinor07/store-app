@@ -38,9 +38,11 @@ class _CepInputFieldState extends State<CepInputField> {
             ],
             keyboardType: TextInputType.number,
             validator: (cep) {
-              if (cep.isEmpty)
+              if (cep.isEmpty) {
                 return 'Campo obrigatório';
-              else if (cep.length != 10) return 'CEP Inválido';
+              } else if (cep.length != 10) {
+                return 'CEP Inválido';
+              }
               return null;
             },
           ),
@@ -73,7 +75,7 @@ class _CepInputFieldState extends State<CepInputField> {
           ),
         ],
       );
-    else
+    else {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
@@ -96,5 +98,6 @@ class _CepInputFieldState extends State<CepInputField> {
           ],
         ),
       );
+    }
   }
 }
