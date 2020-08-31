@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/models/admin_users_manager.dart';
 import 'package:store_app/models/cart_manager.dart';
 import 'package:store_app/models/home_manager.dart';
+import 'package:store_app/models/orders_manager.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/product_manager.dart';
 import 'package:store_app/models/user_manager.dart';
@@ -42,6 +43,12 @@ class MyApp extends StatelessWidget {
           lazy: false,
           update: (_, userManager, cartManager) =>
               cartManager..updateUser(userManager),
+        ),
+        ChangeNotifierProxyProvider<UserManager, OrdersManager>(
+          create: (_) => OrdersManager(),
+          lazy: false,
+          update: (_, userManager, ordersManager) =>
+              ordersManager..updateUser(userManager.user),
         ),
         ChangeNotifierProxyProvider<UserManager, AdminUsersManager>(
           create: (_) => AdminUsersManager(),
