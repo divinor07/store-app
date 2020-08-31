@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/models/admin_users_manager.dart';
 import 'package:store_app/models/cart_manager.dart';
 import 'package:store_app/models/home_manager.dart';
+import 'package:store_app/models/order.dart';
 import 'package:store_app/models/orders_manager.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/product_manager.dart';
@@ -11,6 +12,7 @@ import 'package:store_app/screens/address/address_screen.dart';
 import 'package:store_app/screens/base/base_screen.dart';
 import 'package:store_app/screens/cart/cart_screen.dart';
 import 'package:store_app/screens/checkout/checkout_screen.dart';
+import 'package:store_app/screens/confirmation/confirmation_screen.dart';
 import 'package:store_app/screens/edit_product/edit_product_screen.dart';
 import 'package:store_app/screens/login/login_screen.dart';
 import 'package:store_app/screens/product/product_screen.dart';
@@ -102,6 +104,10 @@ class MyApp extends StatelessWidget {
             case '/select_product':
               return MaterialPageRoute(
                 builder: (_) => SelectProductScreen(),
+              );
+            case '/confirmation':
+              return MaterialPageRoute(
+                builder: (_) => ConfirmationScreen(settings.arguments as Order),
               );
             case '/base':
             default:
