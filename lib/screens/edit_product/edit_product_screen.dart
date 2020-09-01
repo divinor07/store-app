@@ -43,8 +43,8 @@ class EditProductScreen extends StatelessWidget {
                         hintText: 'Título',
                         border: InputBorder.none,
                       ),
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600),
                       validator: (name) {
                         if (name.length < 6) return 'Título muito curto';
                         return null;
@@ -117,7 +117,7 @@ class EditProductScreen extends StatelessWidget {
                             color: primaryColor,
                             disabledColor: primaryColor.withAlpha(100),
                             child: product.loading
-                                ? CircularProgressIndicator(
+                                ? const CircularProgressIndicator(
                                     valueColor:
                                         AlwaysStoppedAnimation(Colors.white),
                                   )

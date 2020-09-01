@@ -20,7 +20,7 @@ class AdminUsersScreen extends StatelessWidget {
               return ListTile(
                 title: Text(
                   adminUsersManager.users[index].name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
                   ),

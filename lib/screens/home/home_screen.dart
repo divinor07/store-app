@@ -15,8 +15,8 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: const [
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
               Color.fromARGB(255, 211, 118, 130),
               Color.fromARGB(255, 253, 181, 168)
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 actions: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.shopping_cart),
+                    icon: const Icon(Icons.shopping_cart),
                     color: Colors.white,
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),
                   ),
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         } else {
                           return IconButton(
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                             onPressed: homeManager.enterEditing,
                           );
                         }
@@ -75,9 +75,9 @@ class HomeScreen extends StatelessWidget {
               Consumer<HomeManager>(
                 builder: (_, homeManager, __) {
                   if (homeManager.loading) {
-                    return SliverToBoxAdapter(
+                    return const SliverToBoxAdapter(
                       child: LinearProgressIndicator(
-                        valueColor: const AlwaysStoppedAnimation(Colors.white),
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
                         backgroundColor: Colors.transparent,
                       ),
                     );

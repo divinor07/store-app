@@ -15,7 +15,7 @@ class CustomDrawerHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(
+              const Text(
                 'Virtual\nStore',
                 style: TextStyle(
                   fontSize: 34,
@@ -26,7 +26,7 @@ class CustomDrawerHeader extends StatelessWidget {
                 'Olá, ${userManager.user?.name ?? ''}',
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

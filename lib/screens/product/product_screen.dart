@@ -27,7 +27,7 @@ class ProductScreen extends StatelessWidget {
               builder: (_, userManager, __) {
                 if (userManager.adminEnabled) {
                   return IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed(
                         '/edit_product',
@@ -64,7 +64,7 @@ class ProductScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     product.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),

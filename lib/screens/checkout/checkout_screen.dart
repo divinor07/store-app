@@ -26,11 +26,11 @@ class CheckoutScreen extends StatelessWidget {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  children: const <Widget>[
                     CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation(Colors.white),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 16,
                     ),
                     Text(

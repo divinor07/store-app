@@ -11,9 +11,9 @@ class CustomDrawer extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
-              colors: const [
+              colors: [
                 Color.fromARGB(255, 203, 236, 241),
                 Colors.white,
               ],
@@ -25,22 +25,22 @@ class CustomDrawer extends StatelessWidget {
             children: <Widget>[
               CustomDrawerHeader(),
               const Divider(),
-              DrawerTile(
+              const DrawerTile(
                 iconData: Icons.home,
                 title: 'Inicio',
                 page: 0,
               ),
-              DrawerTile(
+              const DrawerTile(
                 iconData: Icons.list,
                 title: 'Produtos',
                 page: 1,
               ),
-              DrawerTile(
+              const DrawerTile(
                 iconData: Icons.playlist_add_check,
                 title: 'Meus Pedidos',
                 page: 2,
               ),
-              DrawerTile(
+              const DrawerTile(
                 iconData: Icons.location_on,
                 title: 'Lojas',
                 page: 3,
@@ -49,8 +49,8 @@ class CustomDrawer extends StatelessWidget {
                 builder: (_, userManager, __) {
                   if (userManager.adminEnabled) {
                     return Column(
-                      children: <Widget>[
-                        const Divider(),
+                      children: const <Widget>[
+                        Divider(),
                         DrawerTile(
                           iconData: Icons.settings,
                           title: 'Usuários',

@@ -23,7 +23,7 @@ class _CepInputFieldState extends State<CepInputField> {
     final cartManager = context.watch<CartManager>();
     final primaryColor = Theme.of(context).primaryColor;
 
-    if (widget.address.zipCode == null)
+    if (widget.address.zipCode == null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -75,7 +75,7 @@ class _CepInputFieldState extends State<CepInputField> {
           ),
         ],
       );
-    else {
+    } else {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
