@@ -4,7 +4,7 @@ import 'package:store_app/common/custom_drawer/custom_drawer.dart';
 import 'package:store_app/common/empty_card.dart';
 import 'package:store_app/common/login_card.dart';
 import 'package:store_app/models/orders_manager.dart';
-import 'package:store_app/common/order_tile.dart';
+import 'package:store_app/common/order/order_tile.dart';
 
 class OrdersScreen extends StatelessWidget {
   @override
