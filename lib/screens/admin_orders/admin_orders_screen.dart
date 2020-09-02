@@ -17,7 +17,7 @@ class AdminOrdersScreen extends StatelessWidget {
       body: Consumer<AdminOrdersManager>(
         builder: (_, ordersManager, __) {
           if (ordersManager.orders.isEmpty) {
-            return EmptyCard(
+            return const EmptyCard(
               title: 'Nenhuma venda realizada!',
               iconData: Icons.border_clear,
             );

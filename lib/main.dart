@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/models/admin_orders_manager.dart';
 import 'package:store_app/models/admin_users_manager.dart';
 import 'package:store_app/models/cart_manager.dart';
 import 'package:store_app/models/home_manager.dart';
@@ -57,6 +58,12 @@ class MyApp extends StatelessWidget {
           lazy: false,
           update: (_, userManager, adminUsersManager) =>
               adminUsersManager..updateUser(userManager),
+        ),
+        ChangeNotifierProxyProvider<UserManager, AdminOrdersManager>(
+          create: (_) => AdminOrdersManager(),
+          lazy: false,
+          update: (_, userManager, adminOrdersManager) => adminOrdersManager
+            ..updateAdmin(adminEnabled: userManager.adminEnabled),
         )
       ],
       child: MaterialApp(
@@ -85,9 +92,7 @@ class MyApp extends StatelessWidget {
               );
             case '/cart':
               return MaterialPageRoute(
-                builder: (_) => CartScreen(),
-                settings: settings,
-              );
+                  builder: (_) => CartScreen(), settings: settings);
             case '/address':
               return MaterialPageRoute(
                 builder: (_) => AddressScreen(),
@@ -112,9 +117,7 @@ class MyApp extends StatelessWidget {
             case '/base':
             default:
               return MaterialPageRoute(
-                builder: (_) => BaseScreen(),
-                settings: settings,
-              );
+                  builder: (_) => BaseScreen(), settings: settings);
           }
         },
       ),
