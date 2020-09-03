@@ -7,9 +7,9 @@ import 'package:store_app/models/user_manager.dart';
 import 'package:store_app/screens/product/components/size_widget.dart';
 
 class ProductScreen extends StatelessWidget {
-  final Product product;
-
   const ProductScreen(this.product);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +18,19 @@ class ProductScreen extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: product,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(product.name),
           centerTitle: true,
           actions: <Widget>[
             Consumer<UserManager>(
               builder: (_, userManager, __) {
-                if (userManager.adminEnabled) {
+                if (userManager.adminEnabled && !product.deleted) {
                   return IconButton(
-                    icon: const Icon(Icons.edit),
+                    icon: Icon(Icons.edit),
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed(
-                        '/edit_product',
-                        arguments: product,
-                      );
+                          '/edit_product',
+                          arguments: product);
                     },
                   );
                 } else {
@@ -42,6 +40,7 @@ class ProductScreen extends StatelessWidget {
             )
           ],
         ),
+        backgroundColor: Colors.white,
         body: ListView(
           children: <Widget>[
             AspectRatio(
@@ -64,10 +63,7 @@ class ProductScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     product.name,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
@@ -82,45 +78,54 @@ class ProductScreen extends StatelessWidget {
                   Text(
                     'R\$ ${product.basePrice.toStringAsFixed(2)}',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                       color: primaryColor,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 8),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16, bottom: 8),
                     child: Text(
                       'Descrição',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                   ),
                   Text(
                     product.description,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 8),
-                    child: Text(
-                      'Tamanhos',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                  if (product.deleted)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16, bottom: 8),
+                      child: Text(
+                        'Este produto não está mais disponível',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.red),
+                      ),
+                    )
+                  else ...[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16, bottom: 8),
+                      child: Text(
+                        'Tamanhos',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                     ),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: product.sizes.map((s) {
+                        return SizeWidget(size: s);
+                      }).toList(),
+                    ),
+                  ],
+                  const SizedBox(
+                    height: 20,
                   ),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: product.sizes.map((s) {
-                      return SizeWidget(size: s);
-                    }).toList(),
-                  ),
-                  const SizedBox(height: 20),
                   if (product.hasStock)
                     Consumer2<UserManager, Product>(
                       builder: (_, userManager, product, __) {
@@ -133,7 +138,6 @@ class ProductScreen extends StatelessWidget {
                                       context
                                           .read<CartManager>()
                                           .addToCart(product);
-
                                       Navigator.of(context).pushNamed('/cart');
                                     } else {
                                       Navigator.of(context).pushNamed('/login');
@@ -146,9 +150,7 @@ class ProductScreen extends StatelessWidget {
                               userManager.isLoggedIn
                                   ? 'Adicionar ao Carrinho'
                                   : 'Entre para Comprar',
-                              style: const TextStyle(
-                                fontSize: 18,
-                              ),
+                              style: const TextStyle(fontSize: 18),
                             ),
                           ),
                         );

@@ -67,13 +67,13 @@ class Product extends ChangeNotifier {
   }
 
   bool get hasStock {
-    return totalStock > 0;
+    return totalStock > 0 && !deleted;
   }
 
   num get basePrice {
     num lowest = double.infinity;
     for (final size in sizes) {
-      if (size.price < lowest && size.hasStock) lowest = size.price;
+      if (size.price < lowest) lowest = size.price;
     }
     return lowest;
   }
