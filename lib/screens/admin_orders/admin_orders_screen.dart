@@ -68,7 +68,10 @@ class AdminOrdersScreen extends StatelessWidget {
                             showControls: true,
                           );
                         }),
-                  )
+                  ),
+                const SizedBox(
+                  height: 120,
+                ),
               ],
             ),
             minHeight: 40,
@@ -105,8 +108,11 @@ class AdminOrdersScreen extends StatelessWidget {
                       return CheckboxListTile(
                         title: Text(Order.getStatusText(s)),
                         dense: true,
-                        value: true,
-                        onChanged: (v) {},
+                        activeColor: Theme.of(context).primaryColor,
+                        value: ordersManager.statusFilter.contains(s),
+                        onChanged: (v) {
+                          ordersManager.setStatusFilter(status: s, enabled: v);
+                        },
                       );
                     }).toList(),
                   ),
