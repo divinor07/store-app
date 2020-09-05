@@ -40,6 +40,16 @@ class LoginScreen extends StatelessWidget {
             key: formKey,
             child: Consumer<UserManager>(
               builder: (_, userManager, child) {
+                if (userManager.loadingFace) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(
+                          Theme.of(context).primaryColor),
+                    ),
+                  );
+                }
+
                 return ListView(
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
@@ -65,8 +75,9 @@ class LoginScreen extends StatelessWidget {
                       autocorrect: false,
                       obscureText: true,
                       validator: (pass) {
-                        if (pass.isEmpty || pass.length < 6)
+                        if (pass.isEmpty || pass.length < 6) {
                           return 'Senha inválida';
+                        }
                         return null;
                       },
                     ),
@@ -101,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                           Theme.of(context).primaryColor.withAlpha(100),
                       textColor: Colors.white,
                       child: userManager.loading
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation(Colors.white),
                             )
                           : const Text(
