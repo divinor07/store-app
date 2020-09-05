@@ -26,11 +26,11 @@ class CheckoutScreen extends StatelessWidget {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
+                  children: <Widget>[
                     CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation(Colors.white),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Text(
@@ -47,6 +47,7 @@ class CheckoutScreen extends StatelessWidget {
 
             return ListView(
               children: <Widget>[
+                CreditCardWidget(),
                 PriceCard(
                   buttonText: 'Finalizar Pedido',
                   onPressed: () {
