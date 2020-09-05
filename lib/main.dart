@@ -8,6 +8,7 @@ import 'package:store_app/models/order.dart';
 import 'package:store_app/models/orders_manager.dart';
 import 'package:store_app/models/product.dart';
 import 'package:store_app/models/product_manager.dart';
+import 'package:store_app/models/stores_manager.dart';
 import 'package:store_app/models/user_manager.dart';
 import 'package:store_app/screens/address/address_screen.dart';
 import 'package:store_app/screens/base/base_screen.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => HomeManager(),
           lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => StoresManager(),
         ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
