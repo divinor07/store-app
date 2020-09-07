@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/common/price_card.dart';
 import 'package:store_app/models/cart_manager.dart';
 import 'package:store_app/models/checkout_manager.dart';
+import 'package:store_app/screens/checkout/components/credit_card_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -26,11 +27,11 @@ class CheckoutScreen extends StatelessWidget {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  children: const <Widget>[
                     CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation(Colors.white),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 16,
                     ),
                     Text(

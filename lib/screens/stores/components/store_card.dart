@@ -96,10 +96,10 @@ class StoreCard extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(8))),
+                        borderRadius:
+                            BorderRadius.only(bottomLeft: Radius.circular(8))),
                     padding: const EdgeInsets.all(8),
                     child: Text(
                       store.statusText,
@@ -126,7 +126,7 @@ class StoreCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         store.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 17,
                         ),
